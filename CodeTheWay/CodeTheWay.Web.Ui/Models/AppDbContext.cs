@@ -17,5 +17,8 @@ namespace CodeTheWay.Web.Ui.Models
         }
 
         public virtual DbSet<Student> Students { get; set; }
+
+        public virtual DbSet<Barrel> Barrels { get; set; }
+
     }
 }
