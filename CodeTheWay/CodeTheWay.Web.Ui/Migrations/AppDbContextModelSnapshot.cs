@@ -16,13 +16,39 @@ namespace CodeTheWay.Web.Ui.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.15");
 
+            modelBuilder.Entity("CodeTheWay.Web.Ui.Models.Barrel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Contents")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CurrentLocation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Height")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Radius")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Barrels");
+                });
+
             modelBuilder.Entity("CodeTheWay.Web.Ui.Models.Student", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FirstMidName")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
