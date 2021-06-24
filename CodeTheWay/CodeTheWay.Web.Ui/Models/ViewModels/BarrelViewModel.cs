@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CodeTheWay.Web.Ui.Models.Enums;
 
 namespace CodeTheWay.Web.Ui.Models.ViewModels
 {
@@ -9,7 +10,8 @@ namespace CodeTheWay.Web.Ui.Models.ViewModels
     {
         public Guid Id { get; set; }
         public DateTime DateCreated { get; set; }
-        public int Contents { get; set; }
-        public String CurrentLocation { get; set; }
+        public Contents Contents { get; set; }
+        public string CurrentLocation { get; set; }
+        public Size Size { get; set; }
     }
 }

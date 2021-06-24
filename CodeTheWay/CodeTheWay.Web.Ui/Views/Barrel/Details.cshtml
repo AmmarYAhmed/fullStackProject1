@@ -1,0 +1,13 @@
+﻿@model CodeTheWay.Web.Ui.Models.Barrel
+@*
+    ViewData["Title"] = "Details";
+*@
+<h1>Details</h1>
+<p>Radius:  @Model.Radius</p>
+<p>Height:  @Model.Height</p>
+<p>Contents:  @Model.Contents</p>
+<p>Last Known Location:  @Model.CurrentLocation</p>
+<p>Date registered:  @Model.DateCreated</p>
+<div>
+    <a asp-action="Index">Back to Inventory</a>
+</div>
