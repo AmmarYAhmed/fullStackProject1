@@ -21,6 +21,22 @@ namespace CodeTheWay.Web.Ui.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> Create()
+        {
+            return View(new Barrel());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Register(Barrel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.DateCreated = DateTime.UtcNow;
+                var barrel = await BarrelService.Create(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
         public async Task<IActionResult> Delete(Guid id)
         {
             var barrel = await BarrelService.GetBarrel(id);
