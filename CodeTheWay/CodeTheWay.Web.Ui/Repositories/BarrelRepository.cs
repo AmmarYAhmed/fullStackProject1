@@ -22,10 +22,26 @@ namespace CodeTheWay.Web.Ui.Repositories
 
             return result.Entity;
         }
+        public async Task<Barrel> GetBarrel(Guid id)
+        {
+            return await AppDbContext.Barrels.FirstOrDefaultAsync(i => i.Id == id);
+        }
 
         public async Task<List<Barrel>> GetBarrels()
         {
             return await this.AppDbContext.Barrels.ToListAsync();
+        }
+        public async Task<Barrel> Update(Barrel model)
+        {
+            var result = AppDbContext.Barrels.Update(model);
+            await AppDbContext.SaveChangesAsync();
+            return result.Entity;
+        }
+        public async Task<Barrel> Delete(Barrel model)
+        {
+            AppDbContext.Barrels.Remove(model);
+            await AppDbContext.SaveChangesAsync();
+            return model;
         }
     }
 }

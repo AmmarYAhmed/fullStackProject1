@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CodeTheWay.Web.Ui.Models.ViewModels;
 
 namespace CodeTheWay.Web.Ui.Controllers
 {
@@ -36,5 +37,11 @@ namespace CodeTheWay.Web.Ui.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var barrel = await BarrelService.GetBarrel(id);
+            await BarrelService.Delete(barrel);
+            return RedirectToAction("Index");
+        }
     }
 }

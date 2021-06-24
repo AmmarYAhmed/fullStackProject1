@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace CodeTheWay.Web.Ui.Services
 {
     public interface IBarrelService
     {
         public Task<Barrel> Create(Barrel barrel);
 
+        public Task<Barrel> Update(Barrel barrel);
+        public Task<Barrel> GetBarrel(Guid Id);
         public Task<List<Barrel>> GetBarrels();
+        public Task<Barrel> Delete(Barrel barrel);
     }
 }

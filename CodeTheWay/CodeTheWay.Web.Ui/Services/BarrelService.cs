@@ -20,10 +20,22 @@ namespace CodeTheWay.Web.Ui.Services
         {
             return await this.BarrelRepo.Create(barrel);
         }
+        public async Task<Barrel> GetBarrel(Guid id)
+        {
+            return await this.BarrelRepo.GetBarrel(id);
+        }
 
         public async Task<List<Barrel>> GetBarrels()
         {
             return await this.BarrelRepo.GetBarrels();
+        }
+        public async Task<Barrel> Update(Barrel barrel)
+        {
+            return await BarrelRepo.Update(barrel);
+        }
+        public async Task<Barrel> Delete(Barrel barrel)
+        {
+            return await BarrelRepo.Delete(barrel);
         }
     }
 }
