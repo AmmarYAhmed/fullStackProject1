@@ -1,33 +1,43 @@
-﻿*@
-<h1>Edit</h1>
-<form asp-action="UpDate">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div id="hidden" class="form-group" display="none">
-        <label asp-for="Radius" class="control-label"></label>
-        <input asp-for="Radius" class="form-control" value=@Model.Radius />
-    </div>
-    <div class="form-group">
-        <label asp-for="Height" class="control-label"></label>
-        <input asp-for="Height" class="form-control" value=@Model.Height />
-        <span asp-validation-for="Height" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Location" class="control-label"></label>
-        <input asp-for="Location" class="form-control" value=@Model.Location />
-        <span asp-validation-for="Location" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Date" class="control-label"></label>
-        <input asp-for="Date" class="form-control" value=@Model.Date />
-        <span asp-validation-for="Date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Submit" class="btn btn-primary" />
-    </div>
-</form>
+﻿@model List<CodeTheWay.Web.Ui.Models.ViewModels.BarrelViewModel>
+@*
+    ViewData["Title"] = "Index";
+*@
+
+<h1>Index</h1>
+<table class="table">
+    <thead>
+        <th scope="col">Weight</th>
+        <th scope="col">Barrel Contents</th>
+        <th scope="col">Current Location</th>
+        <th scope="col">Date Registered</th>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contents)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                <div>
+                    <div>
+                        @Html.ActionLink("Edit", "Edit", new {id = item.Id})
+                    </div>
+                </div>
+                <div>
+                    @Html.ActionLink("Details", "Details", new {id = item.Id})
+                </div>
+                <div>
+                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Create">Register a Barrel in the Database.</a>
 </div>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
