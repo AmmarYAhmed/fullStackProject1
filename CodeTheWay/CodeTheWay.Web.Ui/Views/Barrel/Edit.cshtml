@@ -1,4 +1,5 @@
-﻿@model CodeTheWay.Web.Ui.Models.Barrel
+﻿@using CodeTheWay.Web.Ui.Models.Enums
+@model CodeTheWay.Web.Ui.Models.Barrel
 @*
     ViewData["Title"] = "Edit";
 *@
@@ -7,26 +8,42 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Radius" class="control-label"></label>
-        <input asp-for="Radius" class="form-control" value=@Model.Radius />
+        <input asp-for="Radius" class="form-control" value=@Model.Radius/>
         <span asp-validation-for="Radius" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Height" class="control-label"></label>
-        <input asp-for="Height" class="form-control" value=@Model.Height />
+        <input asp-for="Height" class="form-control" value=@Model.Height/>
         <span asp-validation-for="Height" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="CurrentLocation" class="control-label"></label>
-        <input asp-for="CurrentLocation" class="form-control" value=@Model.CurrentLocation />
+        <input asp-for="CurrentLocation" class="form-control" value=@Model.CurrentLocation/>
         <span asp-validation-for="CurrentLocation" class="text-danger"></span>
     </div>
+    <div class="form-group col-sm-6">
+        <label asp-for="Contents" class="control-label">Contents</label>
+        <select asp-for="Contents" class="form-control">
+            @{
+                var names = Enum.GetNames(typeof(Contents));
+                for (var i = 0; i < names.Length; i++)
+                {
+                    var option = names[i];
+
+                    <option value="@i">@option</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="Contents" class="text-danger"></span>
+    </div>
     <div class="form-group">
-        <input type="submit" value="Submit" class="btn btn-primary" />
+        <input type="submit" value="Submit" class="btn btn-primary"/>
     </div>
 </form>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

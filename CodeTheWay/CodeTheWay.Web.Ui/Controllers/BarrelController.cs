@@ -3,10 +3,8 @@ using CodeTheWay.Web.Ui.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using CodeTheWay.Web.Ui.Models.Enums;
-using CodeTheWay.Web.Ui.Models.ViewModels;
 using CodeTheWay.Web.Ui.Models.ViewModels;
 
 namespace CodeTheWay.Web.Ui.Controllers
@@ -20,14 +18,31 @@ namespace CodeTheWay.Web.Ui.Controllers
             this.BarrelService = BarrelService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Size sizeFilter = Size.All, Contents contentsFilter = Contents.All)
         {
             var barrels = await BarrelService.GetBarrels();
             var viewModels = new List<BarrelViewModel>();
             foreach (var barrel in barrels)
             {
+                if(contentsFilter != Contents.All)
+                    if (barrel.Contents != (int)contentsFilter)
+                        continue;
+                
                 var volume = Math.PI * (barrel.Radius * barrel.Radius) * barrel.Height;
+                var size = Size.Small;
 
+                // Height of 20, Radius of 8 yields Medium
+                // Radius of 7 yields Small
+                if (volume <= 3465) // ≈ 15 Gallons
+                    size = Size.Small;
+                else if (volume <= 6930) // ≈ 30 Gallons
+                    size = Size.Medium;
+                else
+                    size = Size.Large;
+                
+                if(sizeFilter != Size.All)
+                    if (size != sizeFilter)
+                        continue;
                 
                 viewModels.Add(new BarrelViewModel()
                 {
@@ -35,7 +50,7 @@ namespace CodeTheWay.Web.Ui.Controllers
                     Contents = (Contents) barrel.Contents,
                     CurrentLocation = barrel.CurrentLocation,
                     DateCreated = barrel.DateCreated,
-                    Size = Size.Small,
+                    Size = size,
                 });
             }
 
@@ -46,10 +61,12 @@ namespace CodeTheWay.Web.Ui.Controllers
         {
             return View(await BarrelService.GetBarrel(id));
         }
+        
         public async Task<IActionResult> Create()
         {
             return View(new Barrel());
         }
+        
         [HttpPost]
         public async Task<IActionResult> Register(Barrel model)
         {
@@ -69,35 +86,17 @@ namespace CodeTheWay.Web.Ui.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-
         public async Task<IActionResult> Edit(Guid id)
         {
             Barrel result = await BarrelService.GetBarrel(id);
-            Barrel barrel = new Barrel()
-            {
-                Id = result.Id,
-                Radius = result.Radius,
-                Height = result.Height,
-                DateCreated = result.DateCreated,
-                CurrentLocation = result.CurrentLocation
-            };
-            return View(barrel);
+            return View(result);
         }
+        
         public async Task<IActionResult> UpDate(Barrel model)
         {
             if (ModelState.IsValid)
             {
-                    Barrel barrel = new Barrel()
-                    {
-                        Id = model.Id,
-                        Radius = model.Radius,
-                        Height = model.Height,
-                        DateCreated = model.DateCreated,
-                        CurrentLocation = model.CurrentLocation
-                    };
-                    await BarrelService.Update(barrel);
+                await BarrelService.Update(model);
             }
             return RedirectToAction("Index");
         }

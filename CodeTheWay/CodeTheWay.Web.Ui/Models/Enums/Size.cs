@@ -4,6 +4,7 @@ namespace CodeTheWay.Web.Ui.Models.Enums
     {
         Small,
         Medium,
-        Large
+        Large,
+        All
     }
 }

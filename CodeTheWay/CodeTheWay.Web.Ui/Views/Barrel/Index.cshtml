@@ -1,22 +1,71 @@
-﻿@model List<CodeTheWay.Web.Ui.Models.ViewModels.BarrelViewModel>
+﻿@using CodeTheWay.Web.Ui.Models.Enums
+@model List<CodeTheWay.Web.Ui.Models.ViewModels.BarrelViewModel>
 @*
     ViewData["Title"] = "Index";
 *@
 
 <h1>Index</h1>
+<p>Filter By:</p>
+<div class="row">
+    <span>Barrel Size: </span>
+</div>
+<div class="row">
+    <a href="?sizeFilter=@Size.All">
+        <button class="btn btn-primary">All</button>
+    </a>
+    <a href="?sizeFilter=@Size.Small">
+        <button class="btn btn-primary">Small</button>
+    </a>
+    <a href="?sizeFilter=@Size.Medium">
+        <button class="btn btn-primary">Medium</button>
+    </a>
+    <a href="?sizeFilter=@Size.Large">
+        <button class="btn btn-primary">Large</button>
+    </a>
+</div>
+<div class="row">
+    <span>Barrel Content: </span>
+</div>
+<div class="row">
+    <a href="?contentsFilter=@Contents.All">
+        <button class="btn btn-primary">All</button>
+    </a>
+    <a href="?contentsFilter=@Contents.Documents">
+        <button class="btn btn-primary">Documents</button>
+    </a>
+    <a href="?contentsFilter=@Contents.Food">
+        <button class="btn btn-primary">Food</button>
+    </a>
+    <a href="?contentsFilter=@Contents.Machinery">
+        <button class="btn btn-primary">Machinery</button>
+    </a>
+    <a href="?contentsFilter=@Contents.Supplies">
+        <button class="btn btn-primary">Supplies</button>
+    </a>
+    <a href="?contentsFilter=@Contents.Misc">
+        <button class="btn btn-primary">Misc</button>
+    </a>
+</div>
 <table class="table">
     <thead>
-        <th scope="col">Weight</th>
-        <th scope="col">Barrel Contents</th>
-        <th scope="col">Current Location</th>
-        <th scope="col">Date Registered</th>
+    <th scope="col">Size</th>
+    <th scope="col">Barrel Contents</th>
+    <th scope="col">Current Location</th>
+    <th scope="col">Date Registered</th>
+    <th scope="col">Manage</th>
     </thead>
     <tbody>
     @foreach (var item in Model)
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Contents)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentLocation)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateCreated)
@@ -39,5 +88,5 @@
     </tbody>
 </table>
 <div>
-    <a asp-action="Create">Register a Barrel in the Database.</a>
+    <a asp-action="Create" class="btn btn-primary">Register a Barrel in the Database</a>
 </div>
