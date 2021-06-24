@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CodeTheWay.Web.Ui.Models.Enums;
 using CodeTheWay.Web.Ui.Models.ViewModels;
+using CodeTheWay.Web.Ui.Models.ViewModels;
 
 namespace CodeTheWay.Web.Ui.Controllers
 {
@@ -44,6 +45,28 @@ namespace CodeTheWay.Web.Ui.Controllers
         public async Task<IActionResult> Details(Guid id)
         {
             return View(await BarrelService.GetBarrel(id));
+        }
+        public async Task<IActionResult> Create()
+        {
+            return View(new Barrel());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Register(Barrel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.DateCreated = DateTime.UtcNow;
+                var barrel = await BarrelService.Create(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var barrel = await BarrelService.GetBarrel(id);
+            await BarrelService.Delete(barrel);
+            return RedirectToAction("Index");
         }
     }
 }
