@@ -1,11 +1,15 @@
-﻿@model CodeTheWay.Web.Ui.Models.Barrel
+﻿@using CodeTheWay.Web.Ui.Models.Enums
+@model CodeTheWay.Web.Ui.Models.Barrel
 @{
     ViewData["Title"] = "Details";
 }
 <h1>Details</h1>
 <p>Radius:  @Model.Radius</p>
 <p>Height:  @Model.Height</p>
-<p>Contents:  @Model.Contents</p>
+@{
+    var contents = (Contents) Model.Contents;
+    <p>Contents:  @contents</p>
+}
 <p>Last Known Location:  @Model.CurrentLocation</p>
 <p>Date registered:  @Model.DateCreated</p>
 <div>

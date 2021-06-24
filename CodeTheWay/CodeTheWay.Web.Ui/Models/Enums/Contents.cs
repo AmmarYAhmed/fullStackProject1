@@ -6,6 +6,7 @@ namespace CodeTheWay.Web.Ui.Models.Enums
         Food,
         Supplies,
         Machinery,
-        Misc
+        Misc,
+        All
     }
 }

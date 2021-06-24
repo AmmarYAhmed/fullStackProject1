@@ -1,46 +1,59 @@
-﻿@model CodeTheWay.Web.Ui.Models.Barrel
-@{ 
+﻿@using CodeTheWay.Web.Ui.Models.Enums
+@using System.Web;
+@model CodeTheWay.Web.Ui.Models.Barrel
+@{
     ViewData["Title"] = "Register";
 }
 
 <h3 align="center">Register a New Barrel</h3>
 <div class="container">
-<form asp-action="Register">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="row">    
-        <div class="form-group col-sm-6">
-            <label asp-for="Radius" class="control-label">Barrel Radius (inches)</label>
-            <input asp-for="Radius" class="form-control" />
-            <span asp-validation-for="Radius" class="text-danger"></span>
+    <form asp-action="Register">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label asp-for="Radius" class="control-label">Barrel Radius (inches)</label>
+                <input asp-for="Radius" class="form-control"/>
+                <span asp-validation-for="Radius" class="text-danger"></span>
+            </div>
+            <div class="form-group col-sm-6">
+                <label asp-for="Height" class="control-label">Barrel Height (inches)</label>
+                <input asp-for="Height" class="form-control"/>
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="Height" class="control-label">Barrel Height (inches)</label>
-            <input asp-for="Height" class="form-control"/>
-            <span asp-validation-for="Height" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-sm-6">
-            <label asp-for="CurrentLocation" class="control-label">Current location</label>
-            <input asp-for="CurrentLocation" class="form-control" placeholder="City, Coordinates, Etc."/>
-            <span asp-validation-for="CurrentLocation" class="text-danger"></span>
-        </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="Contents" class="control-label">Contents</label>
-            <input asp-for="Contents" class="form-control"/>
-            <span asp-validation-for="Contents" class="text-danger"></span>
-        </div>
-    </div>
- 
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-</form>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label asp-for="CurrentLocation" class="control-label">Current location</label>
+                <input asp-for="CurrentLocation" class="form-control" placeholder="City, Coordinates, Etc."/>
+                <span asp-validation-for="CurrentLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group col-sm-6">
+                <label asp-for="Contents" class="control-label">Contents</label>
+                <select asp-for="Contents" class="form-control">
+                    @{
+                        var names = Enum.GetNames(typeof(Contents));
+                        for (var i = 0; i < names.Length; i++)
+                        {
+                            var option = names[i];
 
-<div>
-    <a asp-action="Index" asp-controller="Barrel">Back to List</a>
+                            <option value="@i">@option</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Contents" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary"/>
+        </div>
+    </form>
+
+    <div>
+        <a asp-action="Index" asp-controller="Barrel">Back to List</a>
+    </div>
 </div>
-</div>
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
