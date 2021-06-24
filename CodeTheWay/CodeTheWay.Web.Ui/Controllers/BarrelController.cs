@@ -20,5 +20,20 @@ namespace CodeTheWay.Web.Ui.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> Create()
+        {
+            return View(new Barrel());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Register(Barrel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var barrel = await BarrelService.Create(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
     }
 }
