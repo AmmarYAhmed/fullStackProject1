@@ -1,8 +1,8 @@
 ﻿@using CodeTheWay.Web.Ui.Models.Enums
 @model List<CodeTheWay.Web.Ui.Models.ViewModels.BarrelViewModel>
-@*
+@{
     ViewData["Title"] = "Index";
-*@
+}
 
 <h1>Index</h1>
 <p>Filter By:</p>
@@ -73,18 +73,19 @@
             <td>
                 <div>
                     <div>
-                        @Html.ActionLink("Edit", "Edit", new {id = item.Id})
+                        <div>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        </div>
                     </div>
-                </div>
-                <div>
-                    @Html.ActionLink("Details", "Details", new {id = item.Id})
-                </div>
-                <div>
-                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-                </div>
-            </td>
-        </tr>
-    }
+                    <div>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    </div>
+                    <div>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 <div>

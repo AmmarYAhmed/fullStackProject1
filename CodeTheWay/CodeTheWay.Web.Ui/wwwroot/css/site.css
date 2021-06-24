@@ -87,6 +87,26 @@ body {
 
 #bodyText {
     font-family: "Open Sans", Arial, Sans-Serif;
+    color: #4574a1;
+}
+
+#homeImage {
+    margin-top: 20px;
+    border: 6px solid #0A2457;
+}
+
+.nav-link:hover {
+    padding-bottom: 5px;
+    text-decoration: underline;
+    text-decoration-color: #4574a1;
+}
+
+#privacyText {
+    font-family: "Times New Roman", Times, serif;
+    color: #4574a1;
+}
+
+}
 }
 
 .btn-primary {
