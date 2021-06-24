@@ -75,7 +75,7 @@ namespace CodeTheWay.Web.Ui.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
             Barrel result = await BarrelService.GetBarrel(id);
-            BarrelRegistrationViewModel barrel = new BarrelRegistrationViewModel()
+            BarrelViewModel barrel = new BarrelViewModel()
             {
                 Id = result.Id,
                 Radius = result.Radius,
@@ -85,7 +85,7 @@ namespace CodeTheWay.Web.Ui.Controllers
             };
             return View(barrel);
         }
-        public async Task<IActionResult> UpDate(BarrelRegistrationViewModel model)
+        public async Task<IActionResult> UpDate(Barrel model)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace CodeTheWay.Web.Ui.Controllers
                         DateCreated = model.DateCreated,
                         CurrentLocation = model.CurrentLocation
                     };
-                    Barrel barrel = await BarrelService.Update(barrel);
+                    await BarrelService.Update(barrel);
             }
             return RedirectToAction("Index");
         }

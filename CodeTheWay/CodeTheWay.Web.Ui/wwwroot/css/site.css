@@ -61,7 +61,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-color: FEFBEC;
+    background-color: #FEFBEC;
 }
 .footer {
   position: absolute;
@@ -77,4 +77,8 @@ body {
     word-spacing: 4px;
     font-family: "Times New Roman", Times, serif;
     color: #0A2457;
+}
+
+#bodyText {
+    font-family: "Open Sans", Arial, Sans-Serif;
 }
