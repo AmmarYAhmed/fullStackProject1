@@ -1,7 +1,7 @@
 ﻿@using CodeTheWay.Web.Ui.Models.Enums
 @using System.Web;
 @model CodeTheWay.Web.Ui.Models.Barrel
-@{ 
+@{
     ViewData["Title"] = "Register";
 }
 
@@ -50,14 +50,10 @@
     </form>
 
     <div>
-        <a asp-action="Index" asp-controller="Students">Back to List</a>
+        <a asp-action="Index" asp-controller="Barrel">Back to List</a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index" asp-controller="Barrel">Back to List</a>
-</div>
-</div>
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
