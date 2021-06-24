@@ -29,6 +29,7 @@ namespace CodeTheWay.Web.Ui.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.DateCreated = DateTime.UtcNow;
                 var barrel = await BarrelService.Create(model);
                 return RedirectToAction("Index");
             }
