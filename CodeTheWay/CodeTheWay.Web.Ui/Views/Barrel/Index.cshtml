@@ -4,8 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-<p>Filter By:</p>
+<div class="row">
+    <h1 id="headerText">Index</h1>
+</div>
+<div class="row">
+    <p>Filter By:</p>
+</div>
 <div class="row">
     <span>Barrel Size: </span>
 </div>
@@ -72,20 +76,20 @@
             </td>
             <td>
                 <div>
+                <div>
                     <div>
-                        <div>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                        </div>
+                        @Html.ActionLink("Edit", "Edit", new {id = item.Id})
                     </div>
-                    <div>
-                        @Html.ActionLink("Details", "Details", new { id = item.Id })
-                    </div>
-                    <div>
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </div>
-                </td>
-            </tr>
-        }
+                </div>
+                <div>
+                    @Html.ActionLink("Details", "Details", new {id = item.Id})
+                </div>
+                <div>
+                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                </div>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
 <div>
