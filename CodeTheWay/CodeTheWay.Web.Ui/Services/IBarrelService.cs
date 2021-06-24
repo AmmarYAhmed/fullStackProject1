@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Code
 
 namespace CodeTheWay.Web.Ui.Services
 {
@@ -10,6 +11,9 @@ namespace CodeTheWay.Web.Ui.Services
     {
         public Task<Barrel> Create(Barrel barrel);
 
+        public Task<Barrel> Update(Barrel barrel);
+        public Task<Barrel> GetBarrel(Guid Id);
         public Task<List<Barrel>> GetBarrels();
+        public Task<Barrel> Delete(Barrel barrel);
     }
 }
