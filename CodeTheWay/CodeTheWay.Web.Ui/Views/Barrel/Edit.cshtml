@@ -5,10 +5,6 @@
 <h1>Edit</h1>
 <form asp-action="UpDate">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div id="hidden" class="form-group" display="none">
-        <label asp-for="Id" class="control-label"></label>
-        <input asp-for="Id" class="form-control" value=@Model.Id />
-    </div>
     <div class="form-group">
         <label asp-for="Radius" class="control-label"></label>
         <input asp-for="Radius" class="form-control" value=@Model.Radius />
@@ -23,11 +19,6 @@
         <label asp-for="CurrentLocation" class="control-label"></label>
         <input asp-for="CurrentLocation" class="form-control" value=@Model.CurrentLocation />
         <span asp-validation-for="CurrentLocation" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="DateCreated" class="control-label"></label>
-        <input asp-for="DateCreated" class="form-control" value=@Model.DateCreated />
-        <span asp-validation-for="DateCreated" class="text-danger"></span>
     </div>
     <div class="form-group">
         <input type="submit" value="Submit" class="btn btn-primary" />

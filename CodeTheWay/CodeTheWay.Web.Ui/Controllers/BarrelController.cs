@@ -75,7 +75,7 @@ namespace CodeTheWay.Web.Ui.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
             Barrel result = await BarrelService.GetBarrel(id);
-            BarrelViewModel barrel = new BarrelViewModel()
+            Barrel barrel = new Barrel()
             {
                 Id = result.Id,
                 Radius = result.Radius,
